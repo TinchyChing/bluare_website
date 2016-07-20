@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'DashBoard',
     'LoginSystem',
     'FriendSystem',
+    'Multimedia',
 ]
 
 MIDDLEWARE_CLASSES = [

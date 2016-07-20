@@ -5,7 +5,7 @@ from Main import views as main
 from LoginSystem import views as login
 from DashBoard import views as dashboard
 from FriendSystem import views as friend
-from ImageSystem import views as image
+from Multimedia import views as media
 
 urlpatterns = {
     url(r'^admin/', admin.site.urls),
@@ -46,6 +46,7 @@ urlpatterns = {
     url(r'^known/(\S+)/$', friend.known),
     url(r'^sendmessage/(\S+)/$', friend.sendmessage),
     url(r'^send/(\S+)/$', friend.sendmessage_from_chatview),
-    # image app
-    url(r'^upload/', image.upload),
+
+    # mulyimedia
+    url(r'^uploadvideo/', media.uploadvideo_view),
 }

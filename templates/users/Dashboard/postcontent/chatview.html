@@ -1,6 +1,4 @@
-{% extends 'layouts/dashlayouts/base.html' %}
-
-{% block content%}
+{% extends 'layouts/dashlayouts/base.html' %} {% block content%}
 <div class="mdl-grid">
     <div style="margin-left: auto;margin-right: auto" class="mdl-cell mdl-cell--9-col mdl-cell--12-col-phone">
         <div style="width: 100%;height: 400px" class="demo-card-wide mdl-card mdl-shadow--2dp">
@@ -9,26 +7,24 @@
                 <hr>
             </div>
             <hr>
-        <script>
-            window.onload=function onGetMessage(context)
-            {
-                msg.innerHTML+=context;
-                msg_end.scrollIntoView();
-            }
-        </script>
+            <script>
+                window.onload = function onGetMessage(context) {
+                    msg.innerHTML += context;
+                    msg_end.scrollIntoView();
+                }
+            </script>
             <div id="end" onload="scrollTop = scrollHeight;" class="mdl-cell mdl-card__supporting-text mdl-cell--9-col" style="margin-left: auto;margin-right: auto;position:absolute;height:250px;width:100%;overflow:auto;background:#EEEEEE;">
-            {% for message in message %}
-                {% if message.email == email %}
-                    <br>
-                    <p>{{ message.email }}:{{ message.content }}</p>
-                {% endif %}
-                {% if message.email == email_to %}
-                    <br>
-                    <p>{{ message.email }}:{{ message.content }}</p>
-                {% endif %}
-            {% endfor %}
-            <div id="msg" style="overflow:hidden;width:480px;"></div>
-            <div id="msg_end" style="height:0; overflow:hidden"></div>
+                {% for message in message %} {% if message.email == email %}
+                <br>
+                <p>{{ message.date }}</p>
+                <p>{{ message.email }}:{{ message.content }}</p>
+                {% endif %} {% if message.email == email_to %}
+                <br>
+                <p>{{ message.date }}</p>
+                <p>{{ message.email }}:{{ message.content }}</p>
+                {% endif %} {% endfor %}
+                <div id="msg" style="overflow:hidden;width:480px;"></div>
+                <div id="msg_end" style="height:0; overflow:hidden"></div>
             </div>
             <hr>
         </div>
@@ -36,7 +32,7 @@
             <form action="/send/{{ email_to }}/" method="post">
                 {% csrf_token %}
                 <div class="mdl-textfield mdl-js-textfield">
-                    <textarea class="mdl-textfield__input" type="text" rows= "3" name="content" id="content" ></textarea>
+                    <textarea class="mdl-textfield__input" type="text" rows="3" name="content" id="content"></textarea>
                     <label class="mdl-textfield__label" for="content">输入聊天内容</label>
                 </div>
                 <div class="mdl-card__title">

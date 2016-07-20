@@ -172,7 +172,7 @@ def sblog(request):
         return HttpResponseRedirect('/login')
     return render(request, 'users/Dashboard/postcontent/blog.html',{'userinfo':userinfo,'user':user,'title':title,'count_addmsg':count_addmsg})
 
-
+# 上传与更新用户头像
 def updatehead(request):
     user = request.session.get('users')
     if not user:
@@ -191,9 +191,27 @@ def updatehead(request):
             os.rename(head,'static/upload/head/%s.png'%user)
             userinfo.head = 'static/upload/head/%s.png'%user
             userinfo.save()
+        elif image_type == "jpeg":
+            userinfo = Users.objects.get(email=user)
+            userinfo.head = headimg
+            userinfo.save()
+            userinfo = Users.objects.get(email=user)
+            head = str(userinfo.head)
+            os.rename(head,'static/upload/head/%s.jpeg'%user)
+            userinfo.head = 'static/upload/head/%s.jpeg'%user
+            userinfo.save()
+        elif image_type == "jpg":
+            userinfo = Users.objects.get(email=user)
+            userinfo.head = headimg
+            userinfo.save()
+            userinfo = Users.objects.get(email=user)
+            head = str(userinfo.head)
+            os.rename(head,'static/upload/head/%s.jpg'%user)
+            userinfo.head = 'static/upload/head/%s.jpg'%user
+            userinfo.save()
     return HttpResponseRedirect('/setting')
 
-
+# 由搜索结果得出的用户信息页面
 def userinfo(request,email):
     user = request.session.get('users')
     userinfo = Users.objects.get(email=user)

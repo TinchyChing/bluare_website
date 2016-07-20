@@ -1,8 +1,9 @@
+'''
+登陆验证系统
+'''
 import json
-
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
 from FriendSystem.models import Friends
 from LoginSystem.models import Users
 from django.contrib import messages

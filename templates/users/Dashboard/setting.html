@@ -1,153 +1,159 @@
-{% extends 'layouts/dashlayouts/base.html' %}
-
-{% block content%}
+{% extends 'layouts/dashlayouts/base.html' %} {% block content%}
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.tabs {
-  width: 100%;
-  float: none;
-  list-style: none;
-  position: relative;
-  margin: 30px 0 0 10px;
-  text-align: left;
-}
-.tabs .li {
-  float: left;
-  display: block;
-}
-.tabs .input[type="radio"] {
-  position: absolute;
-  top: -9999px;
-  left: -9999px;
-}
-.tabs .label {
-  display: block;
-  padding: 14px 21px;
-  border-radius: 2px 2px 0 0;
-  font-size: 20px;
-  font-weight: normal;
-  text-transform: uppercase;
-  background: white;
-  cursor: pointer;
-  position: relative;
-  top: 4px;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-.tabs .label:hover {
-  background: deepskyblue;
-}
-.tabs .tab-content {
-  z-index: 2;
-  display: none;
-  overflow: hidden;
-  width: 100%;
-  font-size: 17px;
-  line-height: 25px;
-  padding: 25px;
-  position: absolute;
-  top: 53px;
-  left: 0;
-  background: white;
-}
-.tabs [id^="tab"]:checked + .label {
-  top: 0;
-  padding-top: 17px;
-  background: deepskyblue;
-}
-.tabs [id^="tab"]:checked ~ [id^="tab-content"] {
-  display: block;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    
+    .tabs {
+        width: 100%;
+        float: none;
+        list-style: none;
+        position: relative;
+        margin: 30px 0 0 10px;
+        text-align: left;
+    }
+    
+    .tabs .li {
+        float: left;
+        display: block;
+    }
+    
+    .tabs .input[type="radio"] {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    .tabs .label {
+        display: block;
+        padding: 14px 21px;
+        border-radius: 2px 2px 0 0;
+        font-size: 20px;
+        font-weight: normal;
+        text-transform: uppercase;
+        background: white;
+        cursor: pointer;
+        position: relative;
+        top: 4px;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .tabs .label:hover {
+        background: deepskyblue;
+    }
+    
+    .tabs .tab-content {
+        z-index: 2;
+        display: none;
+        overflow: hidden;
+        width: 100%;
+        font-size: 17px;
+        line-height: 25px;
+        padding: 25px;
+        position: absolute;
+        top: 53px;
+        left: 0;
+        background: white;
+    }
+    
+    .tabs [id^="tab"]:checked + .label {
+        top: 0;
+        padding-top: 17px;
+        background: deepskyblue;
+    }
+    
+    .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
+        display: block;
+    }
 </style>
 <div class="mdl-grid demo-content">
-          <div style="height: 800px" class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
-              <ul style="height: 800px" class="tabs li">
-                  <li class="li">
-                      <input class="input" type="radio" name="tabs" id="tab1" checked />
-                      <label class="label" for="tab1">个人信息</label>
-                      <div id="tab-content1" class="tab-content">
-                          <p>邮箱:  {{ user }}</p>
-                          <br>
-                          <p>用户名:  {{ userinfo.username }}</p>
-                          <br>
-                          <p>年龄:  {{ userinfo.age }} 岁</p>
-                          <br>
-                          <P>生日:  {{ userinfo.birthday }}</P>
-                          <br>
-                          <p>电话:  {{ userinfo.phone }}</p>
-                          <br>
-                          <p>国家:  {{ userinfo.country }}</p>
-                      </div>
-                  </li>
-                  <li class="li">
-                      <input class="input" type="radio" name="tabs" id="tab2" />
-                      <label class="label" for="tab2">修改信息</label>
-                      <div id="tab-content2" class="tab-content">
-                          <form action="/updateuser/" method="post">
-                          {% csrf_token %}
-                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                  <p>用户:  {{ user }}</p>
-                              </div>
-                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                  <label for="p_username">用户名</label>
-                                  <input class="mdl-textfield__input" value="{{ userinfo.username }}" type="text" id="p_username" name="p_username">
-                              </div>
-                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                  <label for="p_phone">出生日期</label>
-                                  <input class="mdl-textfield__input" value="{{ userinfo.birthday }}" type="date" id="p_birthday" name="p_birthday">
-                              </div>
-                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                  <label for="p_phone">手机</label>
-                                  <input class="mdl-textfield__input" value="{{ userinfo.phone }}" type="number" id="p_phone" name="p_phone">
-                              </div>
-                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                  <label for="p_country">国家</label>
-                                  <select class="mdl-textfield__input" name="p_country">
+    <div style="height: 800px" class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+        <ul style="height: 800px" class="tabs li">
+            <li class="li">
+                <input class="input" type="radio" name="tabs" id="tab1" checked />
+                <label class="label" for="tab1">个人信息</label>
+                <div id="tab-content1" class="tab-content">
+                    <p>邮箱: {{ user }}</p>
+                    <br>
+                    <p>用户名: {{ userinfo.username }}</p>
+                    <br>
+                    <p>年龄: {{ userinfo.age }} 岁</p>
+                    <br>
+                    <P>生日: {{ userinfo.birthday }}</P>
+                    <br>
+                    <p>电话: {{ userinfo.phone }}</p>
+                    <br>
+                    <p>国家: {{ userinfo.country }}</p>
+                </div>
+            </li>
+            <li class="li">
+                <input class="input" type="radio" name="tabs" id="tab2" />
+                <label class="label" for="tab2">修改信息</label>
+                <div id="tab-content2" class="tab-content">
+                    <form action="/updateuser/" method="post">
+                        {% csrf_token %}
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <p>用户: {{ user }}</p>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label for="p_username">用户名</label>
+                            <input class="mdl-textfield__input" value="{{ userinfo.username }}" type="text" id="p_username" name="p_username">
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label for="p_phone">出生日期</label>
+                            <input class="mdl-textfield__input" value="{{ userinfo.birthday }}" type="date" id="p_birthday" name="p_birthday">
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label for="p_phone">手机</label>
+                            <input class="mdl-textfield__input" value="{{ userinfo.phone }}" type="number" id="p_phone" name="p_phone">
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label for="p_country">国家</label>
+                            <select class="mdl-textfield__input" name="p_country">
                                       <option selected value ="{{ userinfo.country}}">{{ userinfo.country}}</option>
                                       <option value ="中国">中国</option>
                                       <option value ="Singapore">Singapore</option>
                                   </select>
-                              </div>
-                              <br>
-                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                  <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        </div>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                     保存设置
                                   </button>
-                              </div>
-                          </form>
-                      </div>
-                  </li>
-                  <li class="li">
-                      <input class="input" type="radio" name="tabs" id="tab3" />
-                      <label class="label" for="tab3">修改空间设置</label>
-                      <div id="tab-content3" class="tab-content">
-                      </div>
-                  </li>
-              </ul>
-          </div>
-          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-                  <img src="/{{ userinfo.head }}" class="demo-avatar"><br>
-                  <div class="demo-avatar-dropdown">
-                      <div class="mdl-layout-spacer"></div>
-                    <form action="/updatehead/" method="post" enctype="multipart/form-data" >
-                        {% csrf_token %}
-                        <input id="id_image" type="file" class="" name="head">
-                        <input type="submit" value="修改头像"/>
+                        </div>
                     </form>
-                  </div>
-              </div>
+                </div>
+            </li>
+            <li class="li">
+                <input class="input" type="radio" name="tabs" id="tab3" />
+                <label class="label" for="tab3">修改空间设置</label>
+                <div id="tab-content3" class="tab-content">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+        <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+            <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+                <img src="/{{ userinfo.head }}" class="demo-avatar"><br>
+                <div class="demo-avatar-dropdown">
+                    <div class="mdl-layout-spacer"></div>
+                    <form action="/updatehead/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input id="id_image" type="file" name="head">
+                        <input type="submit" value="修改头像" />
+                    </form>
+                </div>
             </div>
-            <div class="demo-separator mdl-cell--1-col"></div>
-          </div>
         </div>
+        <div class="demo-separator mdl-cell--1-col"></div>
+    </div>
+</div>
 {% endblock %}

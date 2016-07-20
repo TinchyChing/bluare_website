@@ -1,3 +1,6 @@
+'''
+好友系统管理
+'''
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.shortcuts import render
@@ -5,8 +8,9 @@ from FriendSystem.models import Friends,AddMessage,MessageBox
 from LoginSystem.models import Users
 from django.contrib import messages
 import json
-# Create your views here.
 
+
+# 发送添加好友信息
 def getaddfriend(request):
     email = request.POST.get('p_email')
     user = request.session.get('users')
@@ -29,6 +33,7 @@ def getaddfriend(request):
             messages.info(request,"发送成功")
     return HttpResponseRedirect('/social')
 
+# 好友管理页面
 def friends(request):
     title = "好友"
     user = request.session.get('users')
@@ -45,7 +50,7 @@ def friends(request):
     list_f = json.loads(list_friends.friends)
     return render(request, 'users/Dashboard/friends.html',{'list_f':list_f,'userinfo':userinfo,'user':user, 'title':title,'count_addmsg':count_addmsg})
 
-
+# 同意添加好友
 def agreeadd(request,email):
     user = request.session.get('users')
     if not user:
@@ -104,7 +109,7 @@ def agreeadd(request,email):
                 messages.error(request,"您已经添加过此好友")
                 return HttpResponseRedirect('/inbox')
 
-
+# 不同意添加好友
 def disagreeadd(request,email):
     user = request.session.get('users')
     if not user:
@@ -127,7 +132,7 @@ def disagreeadd(request,email):
         messages.info(request,"已拒绝添加请求")
         return HttpResponseRedirect('/inbox')
 
-
+# 已读拒绝添加好友的消息，并删除此消息
 def known(request,email):
     user = request.session.get('users')
     if not user:
@@ -141,7 +146,7 @@ def known(request,email):
     rmmsg.save()
     return HttpResponseRedirect('/inbox')
 
-
+# 向好友发送信息
 def sendmessage(request,email):
     content = request.POST.get('content')
     user = request.session.get('users')
@@ -154,6 +159,7 @@ def sendmessage(request,email):
     messages.info(request,"发送成功")
     return HttpResponseRedirect('/friends')
 
+# 在聊天页面向好友发送消息
 def sendmessage_from_chatview(request,email):
     content = request.POST.get('content')
     user = request.session.get('users')
