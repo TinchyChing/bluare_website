@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    {% if error %}
+    <p style="color: red;">{{ message }}</p>
+    {% endif %}
+<div class="mdl-grid">
+<div style="margin-top:12%;margin-left: auto;margin-right: auto" class="mdl-cell mdl-cell--5-col mdl-cell--12-col-phone">
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">欢迎</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+      <p>Hello</p>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      了解更多
+    </a>
+  </div>
+    {% if not userid %}
+  <div class="mdl-card__menu">
+    <button class="mdl-button mdl-js-button mdl-button--raised">
+      <a style="color: white" class="demo-palette--dark-text" href="/register">加入Dictamnus E</a>
+    </button>
+  </div>
+    {% endif %}
+</div>
+</div>
+</div>
+
+{% endblock %}

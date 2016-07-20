@@ -1,0 +1,42 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<div class="mdl-grid">
+    <div style="margin-top:12%;margin-left: auto;margin-right: auto" class="mdl-cell mdl-cell--9-col mdl-cell--12-col-phone">
+        <div style="width: 100%" class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">用户信息</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                {% if showinfo %}
+                <ul class="demo-list-item mdl-list">
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            邮箱: {{ showinfo.email }}
+                        </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            昵称: {{ showinfo.username }}
+                        </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            出生: {{ showinfo.birthday }}
+                        </span>
+                    </li>
+                    <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                            国家: {{ showinfo.country }}
+                        </span>
+                    </li>
+                </ul>
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

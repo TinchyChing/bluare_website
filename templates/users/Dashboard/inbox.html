@@ -1,0 +1,73 @@
+{% extends 'layouts/dashlayouts/base.html' %}
+
+{% block content %}
+<style>
+.demo-list-item {
+  width: 300px;
+}
+</style>
+          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+            <svg fill="currentColor" width="200px" height="100px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--6-col-desktop">
+              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">1213<tspan font-size="0.2" dy="-0.07">好友消息</tspan></text>
+            </svg>
+            <svg fill="currentColor" width="200px" height="100px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--6-col-desktop">
+              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#b71c1c" text-anchor="middle" dy="0.1">{{ count_addmsg }}<tspan dy="-0.07" fill="#888" font-size="0.2">添加好友请求</tspan></text>
+            </svg>
+          </div>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs mdl-color--grey-100 mdl-color-text--grey-600">
+  <header class="mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--grey-100 mdl-color-text--grey-600">
+      <a href="#friends" class="mdl-layout__tab is-active">好友消息</a>
+      <a href="#unknown" class="mdl-layout__tab mdl-badge" data-badge="{{ count_msg }}">加好友请求</a>
+    </div>
+  </header>
+  <main class="mdl-layout__content">
+    <section class="mdl-layout__tab-panel is-active" id="friends">
+      <div class="page-content">
+          <div class="mdl-grid demo-content">
+              <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                  {% for msg in message %}
+                  {% if msg.email_to == user %}
+                      {% for email in users %}
+                          {% if email.email == msg.email %}
+                              <div class="mdl-card__actions mdl-card--border">
+                                  <img src="/static/images/favicon.png" class="demo-avatar">
+                                  <span>{{ email.username }} ({{ msg.email }})给您发了信息:{{ msg.content }}</span>
+                                  <a href="/chatview/{{ msg.email_to }}_to_{{ msg.email }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">查看</a>
+                              </div>
+                          {% endif %}
+                      {% endfor %}
+                  {% endif %}
+                  {% endfor %}
+              </div>
+          </div>
+      </div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="unknown">
+      <div class="page-content">
+          <div class="mdl-grid demo-content">
+              {% for list in list_msg %}
+              <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                  <div class="mdl-card__actions mdl-card--border">
+                      <a href="/userinfo/{{ list }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">查看资料</a>
+                      {{ list }}请求添加您为好友
+                      <a href="/agreeadd/{{ list }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">同意添加</a>
+                      <a href="/disagreeadd/{{ list }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">拒绝添加</a>
+                  </div>
+              </div>
+              {% endfor %}
+              {% for dlist in dis_msg %}
+              <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                  <div class="mdl-card__actions mdl-card--border">
+                      <a href="/userinfo/{{ dlist }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">查看资料</a>
+                      {{ list }}拒绝了添加您为好友
+                      <a href="/known/{{ dlist }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">确定</a>
+                  </div>
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

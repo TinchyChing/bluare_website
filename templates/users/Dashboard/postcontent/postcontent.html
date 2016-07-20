@@ -1,0 +1,10 @@
+<form id="postcontent" method="post" action="/postcontent/">
+    {% csrf_token %}
+    <div class="mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input" name="p_content" type="text" rows= "3" id="p_content" ></textarea>
+        <label class="mdl-textfield__label" for="p_content">请输入</label>
+    </div>
+    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised">
+        发表
+    </button>
+</form>

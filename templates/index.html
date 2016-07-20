@@ -1,0 +1,154 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<style>
+.demo-card-image.mdl-card {
+  width: 200px;
+  height: 200px;
+  background: url('../assets/demos/image_card.jpg') center / cover;
+}
+.demo-card-image > .mdl-card__actions {
+  height: 52px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.demo-card-image__filename {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+</style>
+<div class="mdl-grid demo-content">
+    <button class="mdl-button mdl-js-button mdl-button--accent">
+        精选
+    </button>
+    <button class="mdl-button mdl-js-button mdl-button--accent">
+        图文
+    </button>
+    <button class="mdl-button mdl-js-button mdl-button--accent">
+        世界
+    </button>
+    <button class="mdl-button mdl-js-button mdl-button--accent">
+        旅游
+    </button>
+    <button class="mdl-button mdl-js-button mdl-button--accent">
+        游戏
+    </button>
+</div>
+<div class="mdl-grid demo-content">
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--8-col">
+              <div class="mdl-card__title" style="height:256px;background: url('/static/images/mmo1.png') center / cover;">
+                  <h2 style="color: white" class="mdl-card__title-text">热点:某某</h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Mauris sagittis pellentesque lacus eleifend lacinia...
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                      阅读文章
+                  </a>
+              </div>
+              <div class="mdl-card__menu">
+                  <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                      <i class="material-icons">share</i>
+                  </button>
+              </div>
+          </div>
+          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+            <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+                <h2 class="mdl-card__title-text">官方消息</h2>
+              </div>
+              <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                  #最新消息
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">了解更多</a>
+              </div>
+            </div>
+          </div>
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">精选
+
+                </h2>
+            </div>
+          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+              <div class="demo-card-image mdl-card mdl-shadow--2dp">
+                  <div class="mdl-card__title mdl-card--expand"></div>
+                  <div class="mdl-card__actions">
+                      <span class="demo-card-image__filename">Image.jpg</span>
+                      </div>
+                      </div>
+        </div>
+        </div>
+</div>
+
+    <!-- 图文精选 -->
+<div id="images" style="display:block" class="mdl-grid demo-content">
+    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">图文</h2>
+        </div>
+        <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand"></div>
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename">Image.jpg</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 世界精选 -->
+<div id="world" style="display:block" class="mdl-grid demo-content">
+    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">世界</h2>
+        </div>
+        <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand"></div>
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename">Image.jpg</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 旅游精选 -->
+<div id="travell" style="display:block" class="mdl-grid demo-content">
+    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">旅游</h2>
+        </div>
+        <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand"></div>
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename">Image.jpg</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- 游戏精选 -->
+<div id="games" style="display:block" class="mdl-grid demo-content">
+    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">游戏</h2>
+        </div>
+        <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand"></div>
+                <div class="mdl-card__actions">
+                    <span class="demo-card-image__filename">Image.jpg</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

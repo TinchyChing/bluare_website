@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>bluare. E P</title>
+
+
+    <link rel="shortcut icon" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/RobotoTTF/">
+    <link rel="stylesheet" href="/static/ttf.css">
+    <link rel="stylesheet" href="/static/dash/blue.css">
+    <link rel="stylesheet" href="/static/dash/styles.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+
+  </head>
+  <body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">bluare. E P</span>
+          <div class="mdl-layout-spacer"></div>
+
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="/">首页</a>
+                <a class="mdl-navigation__link" href="">图文</a>
+                <a class="mdl-navigation__link" href="">世界</a>
+                <a class="mdl-navigation__link" href="">旅游</a>
+                <a class="mdl-navigation__link" href="">游戏</a>
+            </nav>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search">
+              <label class="mdl-textfield__label" for="search">输入关键词</label>
+            </div>
+          </div>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+            <li class="mdl-menu__item">关于</li>
+            <li class="mdl-menu__item">联系我们</li>
+            <li class="mdl-menu__item">资料</li>
+          </ul>
+        </div>
+      </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+      {% if user %}
+        <header class="demo-drawer-header">
+          <img src="/static/images/user.jpg" class="demo-avatar">
+          <div class="demo-avatar-dropdown">
+            <span>{{ user }}</span>
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </header>
+      {% endif %}
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+          <a class="mdl-navigation__link" href="/search">搜索</a>
+            {% if not user %}
+            <a class="mdl-navigation__link" href="/login">登陆</a>
+            <a class="mdl-navigation__link" href="/register">注册</a>
+            {% else %}
+            <a class="mdl-navigation__link" href="/dashboard">仪表盘</a>
+            <a class="mdl-navigation__link" href="/logout">登出</a>
+            {% endif %}
+            <div class="mdl-layout-spacer"></div>
+        </nav>
+      </div>
+      <main class="mdl-layout__content mdl-color--grey-100">
+      {% if messages %}
+          <ul class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
+              {% for message in messages %}
+                  <h3 style="color: brown" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+              {% endfor %}
+          </ul>
+      {% endif %}
+        {% block content %}
+          {% endblock %}
+      </main>
+    </div>
+    <script src="/static/bower_components/material-design-lite/material.min.js"></script>
+  <script src="/static/js/d.js"></script>
+  <script src="/static/js/do.js"></script>
+  </body>
+</html>

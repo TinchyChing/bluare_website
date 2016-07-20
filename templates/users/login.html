@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<div class="mdl-grid">
+<div style="margin-top:12%;margin-bottom:12%;margin-left: auto;margin-right: auto" class="mdl-cell mdl-cell--5-col">
+    <div style="margin-right: auto;margin-left: auto">
+        <div class="mdl-layout-title">bluare. E P | 登陆你的账户</div>
+        <br>
+        <form action="/user_login/" method="post">
+            {% csrf_token %}
+            <div class="mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" name="l_email" required>
+                <label class="mdl-textfield__label" for="l_email">邮箱</label>
+                <span class="mdl-textfield__error">必须输入</span>
+            </div>
+            <div class="mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" name="l_password" required>
+                <label class="mdl-textfield__label" for="l_password">密码</label>
+                <span class="mdl-textfield__error">必须输入</span>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell--6-col">
+                    <input style="align-self: center" class="mdl-button mdl-js-button mdl-button--raised" type="submit" value="登陆">
+                </div>
+                <div class="mdl-cell--6-col">
+                    <a href="/register" style="align-self: center" class="mdl-button mdl-js-button mdl-button--raised">没有账户? 注册一个</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

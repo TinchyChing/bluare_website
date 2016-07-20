@@ -1,0 +1,38 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<div class="mdl-grid">
+<div style="margin-top:12%;margin-left: auto;margin-right: auto" class="mdl-cell mdl-cell--5-col">
+    <div style="margin-right: auto;margin-left: auto">
+        <div class="mdl-layout-title">bluare. E P | 注册</div>
+        <br>
+        <p>注册 Dictamnus E 的账户,你将可以同时用这个账户登录我们的网站,并且使用我们的游戏.</p>
+        <form action="/adduser/" method="post">
+            {% csrf_token %}
+            <div class="mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" name="r_email" required>
+                <label class="mdl-textfield__label" for="r_email">邮箱</label>
+                <span class="mdl-textfield__error">必须输入</span>
+            </div>
+            <div class="mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" name="r_password" required>
+                <label class="mdl-textfield__label" for="r_password">密码</label>
+                <span class="mdl-textfield__error">必须输入</span>
+            </div>
+            <div class="mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" name="r_rpassword" required>
+                <label class="mdl-textfield__label" for="r_password">重复密码</label>
+                <span class="mdl-textfield__error">必须输入</span>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell--6-col">
+                    <input class="mdl-button mdl-js-button mdl-button--raised" type="submit" value="创建账户">
+                </div>
+                <div class="mdl-cell--6-col">
+                    <a href="/">已有账号,登陆</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}
