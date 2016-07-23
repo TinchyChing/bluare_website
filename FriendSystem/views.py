@@ -9,6 +9,7 @@ from LoginSystem.models import Users
 from django.contrib import messages
 import json
 
+online_users = Users.objects.exclude(is_online=False).count()
 
 # 发送添加好友信息
 def getaddfriend(request):
@@ -48,7 +49,7 @@ def friends(request):
         Friends.objects.create(email=user)
     list_friends = Friends.objects.get(email=user)
     list_f = json.loads(list_friends.friends)
-    return render(request, 'users/Dashboard/friends.html',{'list_f':list_f,'userinfo':userinfo,'user':user, 'title':title,'count_addmsg':count_addmsg})
+    return render(request, 'users/Dashboard/friends.html',{'online_users':online_users,'list_f':list_f,'userinfo':userinfo,'user':user, 'title':title,'count_addmsg':count_addmsg})
 
 # 同意添加好友
 def agreeadd(request,email):

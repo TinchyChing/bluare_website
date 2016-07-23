@@ -8,17 +8,19 @@ from FriendSystem.models import Friends
 from LoginSystem.models import Users
 from django.contrib import messages
 
+online_users = Users.objects.exclude(is_online=False).count()
+
 def register(request):
     title = "注册"
     user = request.session.get('users')
     if user:
         return HttpResponseRedirect('/')
-    return render(request, 'users/register.html',{'user':user,'title':title})
+    return render(request, 'users/register.html',{'online_users':online_users,'user':user,'title':title})
 
 def login(request):
     title = "登陆"
     user = request.session.get('users')
-    return render(request, 'users/login.html',{'user':user,'title':title})
+    return render(request, 'users/login.html',{'online_users':online_users,'user':user,'title':title})
 
 def adduser(request):
     email = request.POST.get('r_email')
@@ -79,8 +81,11 @@ def user_login(request):
         user = Users.objects.get(email= email)
         if user:
             if user.password == password:
-                messages.info(request,"成功登陆")
                 request.session['users'] = email
+                user_is_online = Users.objects.get(email=email)
+                user_is_online.is_online = True
+                user_is_online.save()
+                messages.info(request,"成功登陆")
                 return HttpResponseRedirect('/')
             else:
                 messages.error(request,"密码输入错误")
@@ -93,6 +98,9 @@ def user_login(request):
 
 def logout(request):
     try:
+        user_is_online = Users.objects.get(email=request.session.get('users'))
+        user_is_online.is_online = False
+        user_is_online.save()
         del request.session['users']
     except KeyError:
         pass

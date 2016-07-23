@@ -6,26 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>bluare. E P</title>
+    <title>bluare. E | {{ title }}</title>
 
     <link rel="shortcut icon" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/RobotoTTF/">
     <link rel="stylesheet" href="/static/ttf.css">
     <link rel="stylesheet" href="/static/dash/blue.css">
     <link rel="stylesheet" href="/static/dash/styles.css">
-<script>
-    window.onload= function end(){
-        var now = new Date();
-        var div = document.getElementById('end');
-        div.scrollTop = div.scrollHeight;
-    }
-</script>
 </head>
   <body>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">bluare. E P | {{ title }}</span>
+          <span class="mdl-layout-title">bluare. E | {{ title }} | 在线人数 {{ online_users }}</span>
           <div class="mdl-layout-spacer"></div>
             <nav class="mdl-navigation">
                 <a class="mdl-button--accent mdl-navigation__link" href="/">回到首页</a>
@@ -85,8 +78,7 @@
       </main>
     </div>
     <script src="/static/bower_components/material-design-lite/material.min.js"></script>
-  <script src="/static/js/d.js"></script>
-  <script src="/static/js/do.js"></script>
+  <script src="/static/js/action.js"></script>
 
   </body>
 </html>

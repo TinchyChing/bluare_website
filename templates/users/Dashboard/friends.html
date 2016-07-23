@@ -1,14 +1,89 @@
 {% extends 'layouts/dashlayouts/base.html' %}
 {% block content%}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .tabs {
+        width: 100%;
+        float: none;
+        list-style: none;
+        position: relative;
+        margin: 30px 0 0 10px;
+        text-align: left;
+    }
+
+    .tabs .li {
+        float: left;
+        display: block;
+    }
+
+    .tabs .input[type="radio"] {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .tabs .label {
+        display: block;
+        padding: 14px 21px;
+        border-radius: 2px 2px 0 0;
+        font-size: 20px;
+        font-weight: normal;
+        text-transform: uppercase;
+        background: white;
+        cursor: pointer;
+        position: relative;
+        top: 4px;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .tabs .label:hover {
+        background: deepskyblue;
+    }
+
+    .tabs .tab-content {
+        z-index: 2;
+        display: none;
+        overflow: hidden;
+        width: 100%;
+        font-size: 17px;
+        line-height: 25px;
+        padding: 25px;
+        position: absolute;
+        top: 53px;
+        left: 0;
+        background: white;
+    }
+
+    .tabs [id^="tab"]:checked + .label {
+        top: 0;
+        padding-top: 17px;
+        background: deepskyblue;
+    }
+
+    .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
+        display: block;
+    }
+</style>
 <div class="mdl-grid demo-content">
-          <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
-              {% for list in list_f %}
-              <ul class="demo-list-item mdl-list mdl-shadow--2dp">
-                  <li class="mdl-list__item">
+          <div class="demo-graphs mdl-cell mdl-cell--8-col">
+              {% for list in list_f %}{% if not list == user %}
+              <ul class="demo-list-item mdl-color--white mdl-list mdl-shadow--2dp">
+                  <li>
                       <span class="mdl-list__item-primary-content">
                           <a href="/userinfo/{{ list }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">{{ list }}</a>
                       </span>
                       <button id="show-dialog" type="button" class="mdl-button">发送消息</button>
+                      <a href="/chatview/{{ user }}_to_{{ list }}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">聊天</a>
                   </li>
               </ul>
               <dialog style="width: 300px" class="mdl-dialog">
@@ -25,7 +100,7 @@
                       </form>
                   </div>
               </dialog>
-              {% endfor %}
+              {% endif %}{% endfor %}
           </div>
           <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
             <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">

@@ -5,6 +5,8 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="MySQLdb" />
+          <option value="time" />
+          <option value="tuple.save" />
         </list>
       </option>
     </inspection_tool>

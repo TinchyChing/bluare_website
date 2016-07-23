@@ -58,6 +58,9 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE=60*120
 ROOT_URLCONF = 'DictamnusE.urls'
 
 TEMPLATES = [

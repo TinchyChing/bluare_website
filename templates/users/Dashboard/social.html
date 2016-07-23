@@ -12,7 +12,7 @@
             <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">{{ blogcount }}<tspan dy="-0.07" font-size="0.2">篇文章</tspan></text>
         </svg>
         <svg fill="currentColor" width="200px" height="100px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-cell--3-col-desktop">
-            <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan dy="-0.07" font-size="0.2">%自空间热度</tspan></text>
+            <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan dy="-0.07" font-size="0.2">%空间热度</tspan></text>
         </svg>
     </div>
     <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
@@ -54,6 +54,9 @@
                             {% endif %}
                             <div class="mdl-card__supporting-text mdl-color-text--grey-600">
                                 {{ content.content }}
+                                    {% if not content.image == "./static/images/user.jpg" %}
+                                        <img width="100%" src="/{{ content.image }}">
+                                    {% endif %}
                             </div>
                             <div class="mdl-card__actions mdl-card--border">
                                 <button onclick="Show_Hidden({{ content.id }})" class="mdl-button mdl-js-button mdl-js-ripple-effect">

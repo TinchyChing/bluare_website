@@ -84,6 +84,8 @@
                     <br>
                     <p>用户名: {{ userinfo.username }}</p>
                     <br>
+                    <p>性别: {{ userinfo.sex }}</p>
+                    <br>
                     <p>年龄: {{ userinfo.age }} 岁</p>
                     <br>
                     <P>生日: {{ userinfo.birthday }}</P>
@@ -105,6 +107,14 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <label for="p_username">用户名</label>
                             <input class="mdl-textfield__input" value="{{ userinfo.username }}" type="text" id="p_username" name="p_username">
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <label for="p_sex">性别</label>
+                            <select class="mdl-textfield__input" name="p_sex">
+                                      <option selected value ="{{ userinfo.sex}}">{{ userinfo.sex}}</option>
+                                      <option value ="男">男</option>
+                                      <option value ="女">女</option>
+                                  </select>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <label for="p_phone">出生日期</label>

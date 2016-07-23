@@ -7,13 +7,13 @@ from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.shortcuts import render
-from DashBoard.models import PostContent,Comment,T_Comment
 from FriendSystem.models import Friends,AddMessage,MessageBox
 from LoginSystem.models import Users
 from Multimedia.models import UsersVideo
 import time
 import os,json
 
+online_users = Users.objects.exclude(is_online=False).count()
 
 # 视频上传表
 class VideoForm(forms.Form):
@@ -26,11 +26,11 @@ def uploadvideo(request):
     user = request.session.get('users')
     if not user:
         return HttpResponseRedirect('/login')
-    video = VideoForm(request.POST,request,FILES)
-    if video.is_vaild():
-        title = head.cleaned_data['title']
-        video_file = head.cleaned_data['video']
-        type = head.cleaned_data['type']
+    video = VideoForm(request.POST,request.FILES)
+    if video.is_valid():
+        title = video.cleaned_data['title']
+        video_file = video.cleaned_data['video']
+        type = video.cleaned_data['type']
         try:
             UsersVideo.objects.get(email=user)
         except UsersVideo.DoesNotExist:
@@ -40,6 +40,8 @@ def uploadvideo(request):
         user_video.videos = video_file
         user_video.type = type
         user_video.save()
+        messages.info(request,'上传成功')
+    return HttpResponseRedirect('/uploadvideo')
 
 def uploadvideo_view(request):
     user = request.session.get('users')
@@ -51,6 +53,6 @@ def uploadvideo_view(request):
     count_msg = AddMessage.objects.get(email=user)
     count_addmsg = json.loads(count_msg.message)
     count_addmsg = len(count_addmsg)
-    return render(request, 'users/Dashboard/uploadvideo/uploadvideo.html',{'userinfo':userinfo,'user':user,'title':title,'count_addmsg':count_addmsg})
+    return render(request, 'users/Dashboard/uploadvideo/uploadvideo.html',{'online_users':online_users,'userinfo':userinfo,'user':user,'title':title,'count_addmsg':count_addmsg})
 
     

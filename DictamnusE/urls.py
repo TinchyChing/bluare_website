@@ -49,4 +49,6 @@ urlpatterns = {
 
     # mulyimedia
     url(r'^uploadvideo/', media.uploadvideo_view),
+    url(r'^uploadvideoto/', media.uploadvideo),
+
 }

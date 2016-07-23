@@ -6,7 +6,7 @@ from django.utils import timezone
 class UsersVideo(models.Model):
     email = models.EmailField(max_length = 100)
     title = models.TextField(max_length=100,default="video")
-    videos = models.TextField(max_length=200)
+    videos = models.FileField(upload_to = './static/upload/videos',default='./static/images/user.jpg')
     type = models.CharField(max_length=20,default="video")
     date = models.DateTimeField('保存日期',default = timezone.now)
     def __str__(self):
